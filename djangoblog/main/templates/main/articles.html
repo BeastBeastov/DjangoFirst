@@ -1,0 +1,22 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+{{ title }}
+{% endblock %}
+
+{% block body %}
+    <h2>Все статьи на сайте</h2>
+    {% if articles|length > 0  %}
+        {% for article in articles %}
+            <div class="alert alert-info mt-2" >
+                <h3>{{ article.title }}</h3>
+                <p>{{ article.intro }}</p>
+                <p><b>{{ article.date }} </b></p>
+                <a href="{% url 'detail' article.id %}" class="btn btn-warning">Развернуть</a>
+            </div>
+        {% endfor %}
+    {% else  %}
+    <p> На сайте нет статей</p>
+    {% endif %}
+
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+Редактирование статьи
+{% endblock %}
+
+{% block body %}
+    <h3>Редактирование статьи </h3>
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form.title }}<br>
+        {{ form.intro }}<br>
+        {{ form.text }}<br>
+        <input type="submit" class="btn btn-success" value="Обновить">
+        <span>{{ error }}</span>
+    </form>
+
+{% endblock %}

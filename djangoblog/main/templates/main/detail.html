@@ -1,0 +1,18 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+{{ title }}
+{% endblock %}
+
+{% block body %}
+            <div class="alert alert-info mt-2" >
+                <h3>{{ article.title }}</h3>
+                <p>{{ article.intro }}</p>
+                <p>{{ article.text|linebreaks }}</p>
+                <p><b>{{ article.date }} </b></p>
+                <a href="{% url 'articles' %}" class="btn btn-success">Назад</a>
+                <a href="{% url 'update' article.id %}" class="btn btn-warning">Изменить</a>
+                <a href="{% url 'delete' article.id %}" class="btn btn-danger">Удалить</a>
+            </div>
+
+{% endblock %}
