@@ -17,9 +17,15 @@
       <ul class="nav nav-pills">
           <li class="nav-item"><a href="{% url 'main' %}" class="nav-link active" aria-current="page">Главная</a></li>
           <li class="nav-item"><a href="{% url 'articles' %}" class="nav-link">Статьи</a></li>
+          {% if request.user.is_authenticated %}
           <li class="nav-item"><a href="{% url 'create' %}" class="btn btn-warning">Создать</a></li>
+          {% endif %}
           <li class="nav-item"><a href="{% url 'about' %}" class="nav-link">О нас</a></li>
-          <li class="nav-item"><a href="{% url 'admin' %}" class="btn btn-danger">Админ</a></li>
+          {% if request.user.is_authenticated %}
+          <li class="nav-item" ><a href="#" class="btn btn-danger">{{ user.username }}</a>|<a href="{% url 'logout' %}" class="btn btn-danger">Выйти</a></li>
+          {% else %}
+          <li class="nav-item"><a href="{% url 'register' %}" class="btn btn-danger">Регистрация</a>|<a href="{% url 'login' %}" class="btn btn-danger">Войти</a></li>
+          {% endif %}
       </ul>
     </header>
   </div>
@@ -32,12 +38,15 @@
 
     <div class="container">
           <footer class="py-3 my-4">
-            <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-              <li class="nav-item"><a href="{% url 'main' %}" class="nav-link px-2 text-body-secondary">Главная</a></li>
-              <li class="nav-item"><a href="{% url 'articles' %}" class="nav-link px-2 text-body-secondary">Статьи</a></li>
-              <li class="nav-item"><a href="{% url 'create' %}" class="nav-link px-2 text-body-secondary">Создать</a></li>
-              <li class="nav-item"><a href="{% url 'about' %}" class="nav-link px-2 text-body-secondary">О нас</a></li>
-                <li class="nav-item"><a href="{% url 'admin' %}" class="nav-link px-2 text-body-secondary">Админ</a></li>
+              <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+                  <li class="nav-item"><a href="{% url 'main' %}" class="nav-link px-2 text-body-secondary">Главная</a></li>
+                  <li class="nav-item"><a href="{% url 'articles' %}" class="nav-link px-2 text-body-secondary">Статьи</a></li>
+              {% if request.user.is_authenticated %}
+                  <li class="nav-item"><a href="{% url 'create' %}" class="nav-link px-2 text-body-secondary">Создать</a></li>
+              {% endif %}
+                  <li class="nav-item"><a href="{% url 'about' %}" class="nav-link px-2 text-body-secondary">О нас</a></li>
+                  <li class="nav-item"><a href="{% url 'contact' %}" class="nav-link px-2 text-body-secondary">Обратная связь</a></li>
+                  <li class="nav-item"><a href="{% url 'admin' %}" class="nav-link px-2 text-body-secondary">Админ</a></li>
             </ul>
             <p class="text-center text-body-secondary">© 2023 poolskeeper.ru</p>
           </footer>

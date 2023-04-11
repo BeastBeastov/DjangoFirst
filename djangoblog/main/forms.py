@@ -1,5 +1,7 @@
+from .views import AuthenticationForm
 from .models import Article
-from django.forms import ModelForm, TextInput, Textarea
+from django.forms import ModelForm, TextInput, Textarea, CharField, PasswordInput, Form, EmailField
+from captcha.fields import CaptchaField
 
 
 class ArticleForm(ModelForm):
@@ -27,4 +29,13 @@ class ArticleForm(ModelForm):
             }),
         }
 
+class LoginUserForm(AuthenticationForm):
+    username = CharField(label='Логин', widget=TextInput(attrs={'class' : 'form-control'}))
+    username = CharField(label='Пароль', widget=PasswordInput(attrs={'class' : 'form-control'}))
 
+
+class ContactForm(Form):
+    name = CharField(label='Имя', max_length=255)
+    email = EmailField(label='Email')
+    message = CharField(widget=Textarea(attrs={'cols': 60, 'rows': 10}))
+    captcha = CaptchaField()

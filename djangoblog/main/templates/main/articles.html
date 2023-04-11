@@ -7,7 +7,7 @@
 {% block body %}
     <h2>Все статьи на сайте</h2>
     {% if articles|length > 0  %}
-        {% for article in articles %}
+        {% for article in page_obj %}
             <div class="alert alert-info mt-2" >
                 <h3>{{ article.title }}</h3>
                 <p>{{ article.intro }}</p>
@@ -19,4 +19,31 @@
     <p> На сайте нет статей</p>
     {% endif %}
 
+<nav class="container">
+    <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+{% if page_obj.has_other_pages %}
+{% if page_obj.has_previous %}
+    <li class="nav-item">
+        <a class="nav-link" href="?page={{ page_obj.previous_page_number }}"> &lt; </a>
+    </li>
+{% endif %}
+        {% for p in page_obj.paginator.page_range %}
+        {% if page_obj.number == p %}
+        <li class="nav-item">
+            <a class="btn btn-warning" href="?page={{ p }}"> {{ p }} </a>
+        </li>
+        {% elif p >= page_obj.number|add:-2 and p <= page_obj.number|add:2  %}
+        <li class="nav-item">
+            <a class="nav-link" href="?page={{ p }}"> {{ p }} </a>
+        </li>
+        {% endif %}
+        {% endfor %}
+{% if page_obj.has_next %}
+    <li class="nav-item">
+        <a class="nav-link" href="?page={{ page_obj.next_page_number }}"> &gt; </a>
+    </li>
+{% endif %}
+    </ul>
+</nav>
+{% endif %}
 {% endblock %}

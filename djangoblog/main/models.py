@@ -9,6 +9,7 @@ class Article(models.Model):
     text = models.TextField('Статья', null=False)
     #slag = models.CharField('slug', null=False)
     date = models.DateTimeField('Время', default=timezone.now())
+    #author = models.ForeignKey('Автор статьи')
 
     def __str__(self):
         return self.title
