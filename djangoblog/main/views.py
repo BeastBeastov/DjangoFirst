@@ -77,19 +77,21 @@ def articles(request):
     paginator = Paginator(articles, 7)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
-    return render(request, 'main/articles.html', {
+    context = {
         'title':'Все статьи на сайте',
         'articles': articles,
         'page_obj': page_obj,
-    })
+    }
+    return render(request, 'main/articles.html', context=context)
 
 
 def detail(request, id):
     article = Article.objects.get(pk=id)
-    return render(request, 'main/detail.html', {
+    context = {
         'title': article.title,
         'article': article,
-    })
+    }
+    return render(request, 'main/detail.html', context=context)
 
 
 def delete(request, id):
