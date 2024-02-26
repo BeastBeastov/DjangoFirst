@@ -12,6 +12,7 @@
                 <h3>{{ article.title }}</h3>
                 <p>{{ article.intro }}</p>
                 <p><b>{{ article.date }} </b></p>
+                <p>{{article.user}}</p>
                 <a href="{% url 'detail' article.id %}" class="btn btn-warning">Развернуть</a>
             </div>
         {% endfor %}

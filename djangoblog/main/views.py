@@ -74,7 +74,7 @@ def about(request):
 
 def articles(request):
     articles = Article.objects.order_by('-date')
-    paginator = Paginator(articles, 5)
+    paginator = Paginator(articles, 7)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     return render(request, 'main/articles.html', {

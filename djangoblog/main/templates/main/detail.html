@@ -9,12 +9,20 @@
                 <h3>{{ article.title }}</h3>
                 <p>{{ article.intro }}</p>
                 <p>{{ article.text|linebreaks }}</p>
-                <p><b>{{ article.date }} </b></p>
-                <!--<p>Автор статьи: {{article.author.name}}</p>-->
+                <p><b>{{ article.date }} </b>Автор статьи:
+                    {% if article.author.first_name %}
+                    {{article.author.first_name}}
+                    {{article.author.last_name}}
+                    {% else %}
+                    {{article.author}}
+                    {% endif %}
+                </p>
                 <a  onclick="javascript:history.back(); return false;" class="btn btn-success">Назад</a>
                 {% if request.user.is_authenticated %}
+                {% if request.user == article.author %}
                 <a href="{% url 'update' article.id %}" class="btn btn-warning">Изменить</a>
                 <a href="{% url 'delete' article.id %}" class="btn btn-danger">Удалить</a>
+                {% endif %}
                 {% endif %}
             </div>
 
