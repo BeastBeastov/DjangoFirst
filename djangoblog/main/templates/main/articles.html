@@ -20,14 +20,10 @@
     <p> На сайте нет статей</p>
     {% endif %}
 
-<nav class="container">
+<nav class="paginator">
     <ul class="nav justify-content-center border-bottom pb-3 mb-3">
 {% if page_obj.has_other_pages %}
 {% if page_obj.has_previous %}
-    <li class="nav-item">
-        <a class="nav-link" href="?page={{ page_obj.first_page_number }}"> << </a>
-    </li>
-
     <li class="nav-item">
         <a class="nav-link" href="?page={{ page_obj.previous_page_number }}"> &lt; </a>
     </li>
@@ -37,7 +33,7 @@
         <li class="nav-item">
             <a class="btn btn-warning" href="?page={{ p }}"> {{ p }} </a>
         </li>
-        {% elif p >= page_obj.number|add:-3 and p <= page_obj.number|add:3  %}
+        {% elif p >= page_obj.number|add:-2 and p <= page_obj.number|add:2  %}
         <li class="nav-item">
             <a class="nav-link" href="?page={{ p }}"> {{ p }} </a>
         </li>
@@ -46,9 +42,6 @@
 {% if page_obj.has_next %}
     <li class="nav-item">
         <a class="nav-link" href="?page={{ page_obj.next_page_number }}"> &gt; </a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="?page={{ page_obj.page_range }}"> &gt;> </a>
     </li>
 {% endif %}
     </ul>

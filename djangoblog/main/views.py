@@ -48,7 +48,7 @@ class ContactUser(FormView):
         return context  # dict(list(context.items()) + list(c_def.items()))
 
     def form_valid(self, form):
-        print(form.cleaned_data)
+        #print(form.cleaned_data)
         return redirect('main')
 
 
@@ -74,7 +74,7 @@ def about(request):
 
 def articles(request):
     articles = Article.objects.order_by('-date')
-    paginator = Paginator(articles, 7)
+    paginator = Paginator(articles, 10)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     context = {
@@ -127,7 +127,7 @@ def create(request):
     if request.method == "POST":
         article = Article()
         article.date = timezone.now()
-        author = request.user
+        article.author = request.user
         form = ArticleForm(request.POST, instance=article)
         if form.is_valid():
             form.save()
