@@ -9,6 +9,7 @@ from django.views.generic import CreateView, FormView
 from .models import Article
 from .forms import ArticleForm, LoginUserForm, ContactForm
 from django.utils import timezone
+#test
 
 
 # Create your views here.

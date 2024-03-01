@@ -12,6 +12,7 @@ class Article(models.Model):
     slag = models.CharField('slug', max_length=100, null=False)
     date = models.DateTimeField('Время', default=timezone.now())
     author = models.ForeignKey(User, verbose_name='Автор статьи', on_delete=models.CASCADE)
+    # test
 
     def __str__(self):
         return self.title

@@ -2,6 +2,7 @@ from .views import AuthenticationForm
 from .models import Article
 from django.forms import ModelForm, TextInput, Textarea, CharField, PasswordInput, Form, EmailField
 from captcha.fields import CaptchaField
+#test
 
 
 class ArticleForm(ModelForm):
